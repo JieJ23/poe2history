@@ -59,12 +59,15 @@ export default function App() {
     current !== null ? soldHistory.filter((obj) => obj.price.currency === sold_currency[current]) : soldHistory;
 
   return (
-    <main className="overflow-hidden font-[Fontin] text-[12px] md:text-[14px]">
+    <main className="overflow-hidden font-[Fontin] text-[12px] md:text-[14px] relative">
+      <div className="fixed w-full h-lvh -z-10 pointer-events-none">
+        <div className="w-full h-full bg-[url('/poe2.webp')] bg-top bg-cover" />
+      </div>
       <div className="w-full max-w-[1400px] mx-auto my-2 px-2">
         <button className="mb-2 btn btn-sm px-2 font-normal bg-white rounded text-black p-0" onClick={handleParse}>
           Parse JSON
         </button>
-        <div className="p-2 bg-[#393940] text-white rounded">
+        <div className="p-2 text-white rounded">
           <div>- Log into POE 2 trade website</div>
           <div className="flex flex-wrap gap-1">
             <div>- Once logged-in, you can access your history JSON:</div>
@@ -109,7 +112,6 @@ export default function App() {
                     }}
                     labelStyle={{ color: "#fff" }} // controls the label text color
                   />
-
                   <Bar dataKey="transmute" stackId="a" fill="#A8DADC" />
                   <Bar dataKey="aug" stackId="a" fill="#83C5BE" />
                   <Bar dataKey="regal" stackId="a" fill="#B0BEC5" />
@@ -128,9 +130,9 @@ export default function App() {
         {objectData !== null && (
           <div>
             <div className="px-2 mt-4 my-2 text-[14px]">Transactions Summary per Currency.</div>
-            <div className="flex flex-wrap  md:justify-start justify-center gap-2">
+            <div className="grid grid-cols-3 sd:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 2xl:grid-cols-10 gap-1">
               {sold_currency.map((ite, index) => (
-                <div className="bg-[#131111] px-4 py-2 rounded min-w-[100px] relative" key={index}>
+                <div className="bg-[black] p-2 rounded border-1 border-white/20 relative" key={index}>
                   <div
                     className="absolute top-2 right-2 h-3 w-3 rounded-full"
                     style={{ backgroundColor: defineColor(ite) }}
@@ -140,7 +142,7 @@ export default function App() {
                     style={{ backgroundColor: defineColor(ite) }}
                   />
                   <div>
-                    <img src={`/${ite}.png`} alt="Currency" className="size-8 mx-auto" />
+                    <img src={`/${ite}.png`} alt="Currency" className="size-8" />
                   </div>
                   <div>Transaction: {store[index].length}</div>
                   <div>Total: {store[index].reduce((acc, val) => acc + val.price.amount, 0)}x</div>
@@ -150,7 +152,7 @@ export default function App() {
             <div className="px-2 mt-4 my-2 text-[14px]">Sort transactions based on currency.</div>
             <div className="flex flex-wrap gap-1 my-2">
               <div
-                className={`text-white px-1 py-0.5 rounded cursor-pointer min-w-[100px] text-center ${
+                className={`text-white  px-1 py-0.5 rounded cursor-pointer min-w-[100px] text-center ${
                   current === null ? `bg-[#131111]` : `bg-[#393940] `
                 }`}
                 onClick={() => {
@@ -173,14 +175,14 @@ export default function App() {
                 </div>
               ))}
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-4 mt-2 gap-2">
+            <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-10 2xl:grid-cols-12 mb-4 mt-2 gap-1">
               {displayHistory.map((arr, index) => (
-                <div className="grid grid-cols-3 gap-4 bg-[#131111] px-2 py-1 rounded" key={index}>
-                  <div>{arr.time.slice(0, 10)}</div>
-                  <div className="text-end">{arr.price.amount}x</div>
-                  <div className="flex items-center gap-2 justify-end">
-                    <div>{arr.price.currency}</div>
-                    <img src={`/${arr.price.currency}.png`} alt="Currency" className="size-6" />
+                <div className="border-1 border-white/20 p-2 rounded bg-[black] relative" key={index}>
+                  <div className={`flex flex-col justify-center items-center`}>
+                    <div className="">{arr.price.amount}x</div>
+                    <img src={`/${arr.price.currency}.png`} alt="Currency" className="size-8 mx-auto" />
+                    <div className="text-[12px]">{arr.price.currency}</div>
+                    <div className="text-[12px]">{arr.time.slice(0, 10)}</div>
                   </div>
                 </div>
               ))}
