@@ -189,6 +189,10 @@ export default function App() {
                     <div className="text-[12px]">{arr.price.currency}</div>
                     <div className="text-[12px]">{arr.time.slice(0, 10)}</div>
                   </div>
+                  <div
+                    className="w-full h-[3px] rounded-full"
+                    style={{ backgroundColor: defineColor(arr.price.currency) }}
+                  />
                 </div>
               ))}
             </div>
