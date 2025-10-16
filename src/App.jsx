@@ -59,7 +59,7 @@ export default function App() {
     current !== null ? soldHistory.filter((obj) => obj.price.currency === sold_currency[current]) : soldHistory;
 
   return (
-    <main className="overflow-hidden font-[Fontin] text-[12px] md:text-[14px] relative">
+    <main className="overflow-hidden font-[Fontin] text-[12px] relative">
       <div className="fixed w-full h-lvh -z-10 pointer-events-none">
         <div className="w-full h-full bg-[url('/poe2.webp')] bg-top bg-cover" />
       </div>
@@ -112,6 +112,10 @@ export default function App() {
                     }}
                     labelStyle={{ color: "#fff" }} // controls the label text color
                   />
+
+                  <Bar dataKey="hinekoras-lock" stackId="a" fill="#F44336" />
+                  <Bar dataKey="chance" stackId="a" fill="#8E24AA" />
+                  <Bar dataKey="fracturing-orb" stackId="a" fill="#FFC107" />
                   <Bar dataKey="transmute" stackId="a" fill="#A8DADC" />
                   <Bar dataKey="aug" stackId="a" fill="#83C5BE" />
                   <Bar dataKey="regal" stackId="a" fill="#B0BEC5" />
@@ -146,13 +150,14 @@ export default function App() {
                   </div>
                   <div>Transaction: {store[index].length}</div>
                   <div>Total: {store[index].reduce((acc, val) => acc + val.price.amount, 0)}x</div>
+                  <div className="text-[10px] text-end text-gray-400">{ite}</div>
                 </div>
               ))}
             </div>
             <div className="px-2 mt-4 my-2 text-[14px]">Sort transactions based on currency.</div>
-            <div className="flex flex-wrap gap-1 my-2">
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-7 2xl:grid-cols-8 gap-1 my-2">
               <div
-                className={`text-white  px-1 py-0.5 rounded cursor-pointer min-w-[100px] text-center ${
+                className={`text-white  px-1 py-0.5 rounded cursor-pointer flex items-center justify-center ${
                   current === null ? `bg-[#131111]` : `bg-[#393940] `
                 }`}
                 onClick={() => {
@@ -163,7 +168,7 @@ export default function App() {
               </div>
               {sold_currency.map((item, index) => (
                 <div
-                  className={`flex text-white items-center gap-2 justify-center px-1 py-0.5 rounded cursor-pointer min-w-[100px] text-center text-[12px] ${
+                  className={`flex text-white items-center justify-center gap-2 p-1 rounded cursor-pointer text-center text-[12px] ${
                     index === current ? `bg-[#131111]` : `bg-[#393940]`
                   }`}
                   onClick={() => {

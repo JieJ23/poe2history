@@ -20,6 +20,12 @@ export const defineColor = (nam) => {
       return `#D32F2F`;
     case `vaal`:
       return `#81C784`;
+    case `hinekoras-lock`:
+      return `#F44336`;
+    case `chance`:
+      return `#8E24AA`;
+    case `fracturing-orb`:
+      return `#FFC107`;
     default:
       return `#ffffff`;
   }
