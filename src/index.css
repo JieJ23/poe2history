@@ -1,0 +1,10 @@
+@import "tailwindcss";
+@plugin "daisyui"{
+    themes: dark  --default, dark --prefersdark;
+  };
+
+@font-face {
+    font-family: Fontin;
+    font-style: normal;
+    src: url("/src/fonts/Fontin.otf") format("opentype");
+  }
